@@ -4,6 +4,7 @@ from pymongo import MongoClient
 
 from resources.product_types import ProductTypes
 from resources.stores import Stores
+from resources.store import Store
 
 app = Flask(__name__)
 api = Api(app)
@@ -11,20 +12,12 @@ api = Api(app)
 client = MongoClient('127.0.0.1', 27017)
 db = client.comprice
 
-# class Stores(Resource):
-#     def get(self):
-#         stores = db.stores
-#         store_ret = []
-#         for store in stores.find():
-#             store_ret.append(dumps(store))
-#         return jsonify({'stores': store_ret})
+#Store and StoreList
+api.add_resource(Stores, '/stores', resource_class_kwargs={'stores_collection': db.stores})
+api.add_resource(Store, '/stores/<string:store_id>', resource_class_kwargs={'stores_collection': db.stores})
 
 
-
-
-
-api.add_resource(Stores, '/stores', resource_class_kwargs = {'stores_collection': db.stores})
-api.add_resource(ProductTypes, '/product_types', resource_class_kwargs = {'product_types_collection': db.product_types})
+api.add_resource(ProductTypes, '/product_types', resource_class_kwargs={'product_types_collection': db.product_types})
 
 # @app.route('/', methods=['GET'])
 # def home():
