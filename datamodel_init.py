@@ -124,8 +124,28 @@ PriceModifiers = [
     }
 ]
 
+Users = [
+    {
+        '_id': 'nicola.webb',
+        'salt': '59850c0fbd2148e5ae80fe8618773600',
+        'role': 'superadmin',
+        'password': '7104a3d4f75dc34a77515cd09b5f0870ee091272ffaaece55da1768da89cff246c8c2998013e7e2c344398b8c5c2ecba8050195b2cab9e41222cd6161044c27f'
+    },
+
+    {
+        '_id': 'mark.lenoury',
+        'salt': 'a730ad1f7945450782f918132fca08bc',
+        'role': 'superadmin',
+        'password': '69246c9dcba9b40a0e62fbfabaa62c745d93b7354126a0d0120996db020b0aa58bb7d3ac83513eabc69c4013924ebf4c3aadb6f7f901a16ee5a6a4c5c442ed20'
+    }
+]
+
 client = MongoClient('127.0.0.1', 27017)
 db = client.comprice
+
+users = db.users
+users.insert_many(Users)
+
 product_types = db.product_types
 product_types.insert_many(ProductTypes)
 
