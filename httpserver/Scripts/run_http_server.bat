@@ -1,0 +1,1 @@
+java -jar Hello-assembly-0.1.0-SNAPSHOT.jar 2001 C:\sb\netty_play\server\deploy
